@@ -1,0 +1,27 @@
+{
+    "name":        "chebur/dbal-sphinx",
+    "description": "Doctrine DBAL for SPhinx",
+    "type":        "library",
+    "keywords": [
+        "sphinx",
+        "sphinxsearch",
+        "sphinxql",
+        "doctrine",
+        "dbal"
+    ],
+    "homepage": "https://github.com/vchebotarev",
+    "license":  "MIT",
+    "authors": [
+        {
+            "name":     "Vladimir Chebotarev",
+            "homepage": "http://github.com/vchebotarev",
+            "email":    "v.yu.chebotarev@mail.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Chebur\\DBALSphinx\\": "src/" }
+    },
+    "require": {
+        "doctrine/dbal": "^2.6||^2.7"
+    }
+}

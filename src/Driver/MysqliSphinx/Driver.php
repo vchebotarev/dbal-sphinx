@@ -2,11 +2,11 @@
 
 namespace Chebur\DBALSphinx\Driver\MysqliSphinx;
 
+use Chebur\DBALSphinx\Driver\AbstractSphinxDriver;
 use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Driver\AbstractMySQLDriver;
 use Doctrine\DBAL\Driver\Mysqli\MysqliException;
 
-class Driver extends AbstractMySQLDriver
+class Driver extends AbstractSphinxDriver
 {
     /**
      * @inheritdoc

@@ -2,11 +2,11 @@
 
 namespace Chebur\DBALSphinx\Driver\PDOSphinx;
 
+use Chebur\DBALSphinx\Driver\AbstractSphinxDriver;
 use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Driver\PDOMySql\Driver as PDOMySqlDriver;
 use PDOException;
 
-class Driver extends PDOMySqlDriver
+class Driver extends AbstractSphinxDriver
 {
     /**
      * @inheritdoc
@@ -23,13 +23,30 @@ class Driver extends PDOMySqlDriver
     }
 
     /**
-     * @inheritDoc
+     * Constructs the MySql Sphinx PDO DSN.
+     * @see \Doctrine\DBAL\Driver\PDOMySql\Driver::constructPdoDsn except dbname
+     *
+     * @param array $params
+     *
+     * @return string The DSN.
      */
     protected function constructPdoDsn(array $params)
     {
-        unset($params['dbname']);
+        $dsn = 'mysql:';
+        if (isset($params['host']) && $params['host'] != '') {
+            $dsn .= 'host=' . $params['host'] . ';';
+        }
+        if (isset($params['port'])) {
+            $dsn .= 'port=' . $params['port'] . ';';
+        }
+        if (isset($params['unix_socket'])) {
+            $dsn .= 'unix_socket=' . $params['unix_socket'] . ';';
+        }
+        if (isset($params['charset'])) {
+            $dsn .= 'charset=' . $params['charset'] . ';';
+        }
 
-        return parent::constructPdoDsn($params);
+        return $dsn;
     }
 
     /**

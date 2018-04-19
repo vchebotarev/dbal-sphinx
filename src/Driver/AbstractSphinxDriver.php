@@ -29,7 +29,7 @@ abstract class AbstractSphinxDriver extends AbstractMySQLDriver
      */
     public function getDatabase(Connection $conn)
     {
-        return null; //todo maybe unsupported exception ?
+        throw SphinxException::notSupported(__METHOD__);
     }
 
     /**
@@ -37,7 +37,7 @@ abstract class AbstractSphinxDriver extends AbstractMySQLDriver
      */
     public function getSchemaManager(Connection $conn)
     {
-        return null; //todo maybe unsupported exception ?
+        throw SphinxException::notSupported(__METHOD__);
     }
 
 }

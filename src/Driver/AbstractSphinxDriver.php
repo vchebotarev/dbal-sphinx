@@ -4,6 +4,7 @@ namespace Chebur\DBALSphinx\Driver;
 
 use Chebur\DBALSphinx\Platforms\SphinxPlatform;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Driver\AbstractMySQLDriver;
 
 abstract class AbstractSphinxDriver extends AbstractMySQLDriver
@@ -29,7 +30,7 @@ abstract class AbstractSphinxDriver extends AbstractMySQLDriver
      */
     public function getDatabase(Connection $conn)
     {
-        throw SphinxException::notSupported(__METHOD__);
+        throw DBALException::notSupported(__METHOD__);
     }
 
     /**
@@ -37,7 +38,7 @@ abstract class AbstractSphinxDriver extends AbstractMySQLDriver
      */
     public function getSchemaManager(Connection $conn)
     {
-        throw SphinxException::notSupported(__METHOD__);
+        throw DBALException::notSupported(__METHOD__);
     }
 
 }

@@ -3,6 +3,7 @@
 namespace Chebur\DBALSphinx\Platforms;
 
 use Chebur\DBALSphinx\Platforms\Keywords\SphinxKeywords;
+use Chebur\DBALSphinx\Type\ArrayIntType;
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\TrimMode;
@@ -12,6 +13,7 @@ use Doctrine\DBAL\Schema\Identifier;
 use Doctrine\DBAL\Schema\Index;
 use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Schema\TableDiff;
+use Doctrine\DBAL\Types\Type;
 
 //class SphinxPlatform extends MySqlPlatform
 class SphinxPlatform extends AbstractPlatform
@@ -123,19 +125,22 @@ class SphinxPlatform extends AbstractPlatform
     }
 
     /**
-     * @inheritDoc
-     */
-    protected function getBinaryTypeDeclarationSQLSnippet($length, $fixed)
-    {
-        throw DBALException::notSupported(__METHOD__);
-    }
-
-    /**
+     * http://sphinxsearch.com/docs/current.html#conf-rt-attr-uint
      * @inheritDoc
      */
     protected function initializeDoctrineTypeMappings()
     {
-        // TODO: Implement initializeDoctrineTypeMappings() method.
+        $this->doctrineTypeMapping = [
+            'uint'      => Type::INTEGER,
+            'bigint'    => Type::BIGINT,
+            'float'     => Type::FLOAT,
+            'bool'      => Type::BOOLEAN,
+            'timestamp' => Type::DATETIME,
+            'string'    => Type::STRING,
+            'field'     => Type::STRING,
+            'json'      => Type::JSON,
+            'mva'       => ArrayIntType::ARRAY_INT,
+        ];
     }
 
     /**

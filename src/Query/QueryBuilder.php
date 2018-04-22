@@ -49,6 +49,8 @@ class QueryBuilder extends DoctrineQueryBuilder
 
     //todo groupNby
 
+    //todo option
+
     /**
      * @inheritDoc
      */
